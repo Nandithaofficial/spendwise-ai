@@ -29,7 +29,7 @@ export default function Home() {
                 <span className="text-green-400 text-glow">for AI tools.</span>
               </h1>
               <p className="text-slate-400 text-xl max-w-xl mx-auto leading-relaxed">
-                Input your AI subscriptions. Get an instant audit showing exactly where you're overspending and what to do about it.
+                Input your AI subscriptions. Get an instant audit showing exactly where you&apos;re overspending and what to do about it.
               </p>
               <div className="flex items-center justify-center gap-8 mt-10 text-sm text-slate-500">
                 <div className="flex items-center gap-2"><span className="text-green-400">✓</span> Instant results</div>
