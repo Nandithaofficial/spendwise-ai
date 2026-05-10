@@ -37,7 +37,7 @@ export default function Home() {
                 <div className="flex items-center gap-2"><span className="text-green-400">✓</span> Shareable report</div>
               </div>
             </div>
-            <AuditForm onResult={(result: AuditResult) => setAuditResult(result)} setIsLoading={setIsLoading} isLoading={isLoading} />
+            <AuditForm onResult={(result) => setAuditResult(result)} setIsLoading={setIsLoading} isLoading={isLoading} />
           </>
         ) : (
           <AuditResults result={auditResult} onReset={() => setAuditResult(null)} />
@@ -45,8 +45,8 @@ export default function Home() {
       </div>
       <footer className="relative z-10 border-t border-white/5 mt-24 py-8">
         <div className="max-w-4xl mx-auto px-4 flex items-center justify-between text-sm text-slate-600">
-          <span>SpendWise AI</span>
-          <span>Powered by <a href="https://credex.rocks" target="_blank" rel="noopener noreferrer" className="text-green-600 hover:text-green-400 transition-colors">Credex</a></span>
+          <span className="font-display font-600">SpendWise AI</span>
+          <span>Powered by <a href="https://credex.rocks" target="_blank" rel="noopener noreferrer" className="text-green-600 hover:text-green-400 transition-colors">Credex</a> — discounted AI credits</span>
         </div>
       </footer>
     </div>

@@ -1,0 +1,15 @@
+{
+  // Keep a minimal Open Editors count (VS Code schema requires >= 1)
+  "explorer.openEditors.visible": 1,
+
+  // Use visible tabs (classic tabbed behavior). Allowed: "multiple" | "single" | "none"
+  "workbench.editor.showTabs": "multiple",
+  "workbench.editor.enablePreview": false,
+  "workbench.editor.enablePreviewFromQuickOpen": false,
+
+  // Close empty editor groups automatically
+  "workbench.editor.closeEmptyGroups": true,
+
+  // Restore view state when reopening editors
+  "workbench.editor.restoreViewState": true
+}
