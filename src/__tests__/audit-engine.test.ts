@@ -1,3 +1,4 @@
+import { test, expect } from "@jest/globals";
 import { runAudit } from "../../lib/audit-engine";
 import type { AuditInput } from "../../types";
 
