@@ -19,7 +19,14 @@
 ---
 
 ## Day 3 — 2026-05-11
-*(fill this in tomorrow when you work)*
+**Hours worked:** 3
+**What I did:** Conducted 3 user interviews with students, freelancers, and a startup intern to validate assumptions around AI tool spending behavior. Asked questions about tool usage, monthly spend awareness, and trust in automated audit tools. Recorded responses and extracted key insights for product direction. Noticed a strong pattern of users not tracking subscriptions properly and relying on memory or bank notifications instead of structured tracking. Identified emotional retention of tools (“keeping just in case”) and lack of visibility in team-based subscriptions. Updated feature ideas based on findings, especially around usage tracking and team cost breakdowns.
+
+**What I learned:** Most users don’t actively manage AI tool subscriptions — they either forget them or justify keeping tools without actual usage. Trust is a major factor; users are skeptical of any tool that analyzes their spending unless it is transparent and non-intrusive. Team users have even less visibility than individual users, which creates hidden overspending.
+
+**Blockers / what I'm stuck on:** Difficulty in reaching enough real users quickly for interviews — had to rely on peers and indirect contacts. Some responses were vague, requiring follow-up questions to extract actionable insights.
+
+**Plan for tomorrow:** Translate insights into product improvements (subscription tracker, usage analytics dashboard, and team visibility module). Start improving UI based on real user pain points and refine audit explanations for better clarity and trust.
 
 ---
 
