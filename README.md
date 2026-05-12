@@ -75,17 +75,63 @@ Five meaningful trade-offs made during the build:
 ## Repo Structure
 
 ```
-app/                  Next.js App Router pages and API routes
-  api/leads/          Lead capture endpoint (POST)
-  api/audit/          Audit generation endpoint
-  audit/[id]/         Shareable public audit URL
-components/
-  form/               AuditForm — spend input form
-  audit/              AuditResults — results page component
-lib/
-  auditEngine.ts      Core audit logic (hardcoded rules)
-  store.ts            In-memory audit + lead storage
-  anthropic.ts        AI summary generation + fallback
-types/                Shared TypeScript types
-public/               Static assets + og-image.png
+spendwise-ai/
+│
+├── .github/
+│   └── workflows/
+│       └── ci.yml
+│
+├── app/
+│   ├── api/
+│   ├── audit/
+│   ├── share/
+│   ├── globals.css
+│   ├── layout.tsx
+│   └── page.tsx
+│
+├── components/
+│   ├── forms/
+│   ├── results/
+│   ├── ui/
+│   └── shared/
+│
+├── lib/
+│   ├── audit-engine.ts
+│   ├── pricing-data.ts
+│   ├── recommendations.ts
+│   ├── summary-generator.ts
+│   ├── storage.ts
+│   └── utils.ts
+│
+├── public/
+│   ├── screenshots/
+│   ├── og-image.png
+│   └── favicon.ico
+│
+├── src/
+│   └── __tests__/
+│       └── audit-engine.test.ts
+│
+├── styles/
+│
+├── README.md
+├── ARCHITECTURE.md
+├── DEVLOG.md
+├── REFLECTION.md
+├── TESTS.md
+├── PRICING_DATA.md
+├── PROMPTS.md
+├── GTM.md
+├── ECONOMICS.md
+├── LANDING_COPY.md
+├── METRICS.md
+├── package.json
+├── package-lock.json
+├── tsconfig.json
+├── tailwind.config.ts
+├── next.config.js
+├── postcss.config.js
+├── jest.config.js
+├── .gitignore
+└── .env.example
 ```
