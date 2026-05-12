@@ -1,36 +1,91 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# SpendWise AI — Free AI Tool Spend Audit
 
-## Getting Started
+SpendWise AI is a free web app for startup founders and engineering managers to audit their AI tool subscriptions — finding overspend, suggesting cheaper alternatives, and surfacing savings in under 60 seconds. No login required. Built as a lead-generation asset for [Credex](https://credex.rocks).
 
-First, run the development server:
+🔗 **Live:** https://spendwise-ai-nine.vercel.app
+
+---
+
+## Screenshots
+### 📊 Dashboard
+![Dashboard](./screenshots/dashboard.png)
+![Dashboard](./screenshots/dashboard(1).png)
+
+### ➕ Result
+![Result](./screenshots/result.png)
+
+![Result](./screenshots/result(1).png)
+>
+> Suggested shots:
+> 1. The landing + form page
+> 2. A results page showing savings breakdown
+> 3. The lead capture / email gate modal
+
+---
+
+## Quick Start
 
 ```bash
+# 1. Clone
+git clone https://github.com/Nandithaofficial/spendwise-ai.git
+cd spendwise-ai
+
+# 2. Install
+npm install
+
+# 3. Set environment variables
+cp .env.example .env.local
+# Fill in: ANTHROPIC_API_KEY, RESEND_API_KEY
+
+# 4. Run locally
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+# Open http://localhost:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Deploy to Vercel
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npx vercel --prod
+# Set the same env vars in Vercel dashboard → Settings → Environment Variables
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+---
 
-## Learn More
+## Decisions
 
-To learn more about Next.js, take a look at the following resources:
+Five meaningful trade-offs made during the build:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. **Hardcoded audit rules over AI inference for the audit engine.**
+   The audit math (plan comparisons, seat-count logic, alternative recommendations) is deterministic rule-based logic, not LLM-generated. This makes results auditable, consistent, and fast. AI is used only for the personalized summary paragraph — the one place where natural language genuinely adds value.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+2. **In-memory store over a hosted database.**
+   Audit results and leads are stored server-side in memory (via `lib/store.ts`) rather than Supabase or Postgres. This eliminates infra setup time and keeps the project zero-dependency for deployment. The trade-off: data doesn't survive server restarts. For a production launch, this would be swapped for Supabase with a single schema change.
 
-## Deploy on Vercel
+3. **No form state persistence across page reloads.**
+   Form state lives in React `useState` only. Persisting to `localStorage` was considered but skipped to avoid over-engineering an MVP. Users rarely reload mid-form; the cost of losing state is low relative to the complexity of hydration-safe localStorage sync in Next.js.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+4. **Honeypot field for abuse protection over hCaptcha.**
+   A hidden `website` field silently accepts and discards bot submissions. This blocks the majority of automated form spam with zero UX friction and no third-party dependency. hCaptcha would be added before a high-traffic launch.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+5. **React state for audit result routing instead of a separate `/results` page.**
+   Results render on the same page by toggling state (`auditResult` null/set), keeping the URL clean for the unauthenticated flow. The shareable URL uses a separate `/audit/[id]` route so sharing still works. This avoids a full-page navigation for the primary happy path, making the experience feel instant.
+
+---
+
+## Repo Structure
+
+```
+app/                  Next.js App Router pages and API routes
+  api/leads/          Lead capture endpoint (POST)
+  api/audit/          Audit generation endpoint
+  audit/[id]/         Shareable public audit URL
+components/
+  form/               AuditForm — spend input form
+  audit/              AuditResults — results page component
+lib/
+  auditEngine.ts      Core audit logic (hardcoded rules)
+  store.ts            In-memory audit + lead storage
+  anthropic.ts        AI summary generation + fallback
+types/                Shared TypeScript types
+public/               Static assets + og-image.png
+```
