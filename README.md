@@ -69,7 +69,7 @@ Five meaningful trade-offs made during the build:
 
 5. **React state for audit result routing instead of a separate `/results` page.**
    Results render on the same page by toggling state (`auditResult` null/set), keeping the URL clean for the unauthenticated flow. The shareable URL uses a separate `/audit/[id]` route so sharing still works. This avoids a full-page navigation for the primary happy path, making the experience feel instant.
-
+ all of these are practiced 
 ---
 
 ## Repo Structure
